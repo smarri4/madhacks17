@@ -11,6 +11,17 @@ class Customer():
         response = requests.get(url)
         return response.json()
 
+    def getAllCustPurchases(self,id):
+        url=self.url+'/accounts/'+id+'/purchases'+'?'+'key='+self.key
+        response=requests.get(url)
+        return response.json()
+
+    def getMerchantDetByID(self,mid):
+        url=self.url+'/merchants/'+mid+'?'+'key='+self.key
+        response=requests.get(url)
+        return response.json()
+
+
     def getAccountByID(self,id):
         url=self.url+'/accounts/'+id+'?'+self.key
         response = requests.get(url)
