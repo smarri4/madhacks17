@@ -3,11 +3,24 @@ from django.shortcuts import render
 # Create your views here.
 from django.contrib.auth.models import User
 from django.http import Http404
+from django.template.loader import get_template
+from django.template import Context
+from django.http import HttpResponse
+from budget_buddy.templates import visualize
 
 from budget_buddy.serializers import UserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+
+class UserList(APIView):
+    """
+    List all users, or create a new user.
+    """
+    def get(self, request, format=None):
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
 
 class UserList(APIView):
     """
@@ -57,3 +70,9 @@ class UserDetail(APIView):
         user = self.get_object(pk)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+def index(request):
+    t = get_template('visualize/pages/index.html')
+    # html = t.render(Context({'current_date': id}))
+    html = t.render()
+    return HttpResponse(html)
