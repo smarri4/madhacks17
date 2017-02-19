@@ -17,7 +17,7 @@ from django.conf.urls import  include, url
 from django.contrib import admin
 from django.template.loader import get_template
 from django.views.generic import TemplateView
-from budget_buddy.view import current_date
+from budget_buddy.view import purchases,plan
 
 from budget_buddy import views
 
@@ -26,5 +26,10 @@ urlpatterns = [
     url(r'^users/', views.UserList.as_view()),
     url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
     url(r'^enterprise/accounts/', views.UserList.as_view()),
-    url(r'^$', current_date.current_datetime, name='current_datetime'),
+    # url(r'^$', current_date.current_datetime, name='current_datetime'),
+    url(r'^$', views.index,name='index'),
+    url(r'^index', views.index,name='index'),
+    url(r'^purchases/(?P<pk>[a-z 0-9]+)/$', purchases.purchases_for_month,name='purchases_for_month'),
+    url(r'^plan/', plan.plan_form,name='plan_form'),
+    url(r'^plan-budget/', plan.plan_your_budget,name='plan_your_budget'),
 ]
