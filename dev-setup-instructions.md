@@ -1,25 +1,25 @@
 #Development setup instructions
 
-install django:
+#### install django:
 ```python -m pip install django```
 
-install django REST framework:
+#### install django REST framework:
 ```python -m pip install djangorestframework```
 
-check install and version:
+#### check install and version:
 ```django-admin --version```
 
-Start a django project:
+#### Start a django project:
 ```django-admin startproject budget_buddy```
 
-install MySQL-python, which is a database connector for Python:
+#### install MySQL-python, which is a database connector for Python:
 ```python -m pip install MySQL-python  xxxx```
 
-do
+#### if you have a problem installation, do
 ```python -m pip install mysqlclient-1.3.9-cp36-cp36m-win_amd64.whl```
 
 
-in settings.py 
+#### in settings.py 
 ```
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,7 +42,7 @@ DATABASES = {
     }
 }
 ```
-Create your new app:
+#### Create your new app:
 ```$ python manage.py startapp budget_buddy```
 
 
